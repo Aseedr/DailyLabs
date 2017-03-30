@@ -1,24 +1,27 @@
 package com.example.uljan.dailylabs;
 
 import android.os.Bundle;
-import android.widget.ListView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.EditText;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.AdapterView.OnItemClickListener;
+import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
 
-    String[] editT = { "", "", "", "", "", "", "", "", "", "", "", "" };
-    String[] editLabs = { "Lab1", "Lab2", "Lab3", "Lab4", "Lab5", "Lab6" };
+    String[] editT = {"", "", "", "", "", "", "", "", "", "", "", ""};
+    String[] editLabs = {"Lab1", "Lab2", "Lab3", "Lab4", "Lab5", "Lab6"};
     int count = 0;
+
+    public MainActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,19 +41,19 @@ public class MainActivity extends AppCompatActivity {
 
         ListView lvMain = (ListView) findViewById(R.id.main_list);
         lvMain.setOnItemClickListener(new OnItemClickListener() {
-                                          public void onItemClick(AdapterView<?> parent, View view,
-                                                                  int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
 
-                                              labs();
+                labs();
 
-                                          }
-                                      });
-    // Example of a call to a native method
-    //TextView tv = (TextView) findViewById(R.id.sample_text);
-    //tv.setText(stringFromJNI());
+            }
+        });
+        // Example of a call to a native method
+        //TextView tv = (TextView) findViewById(R.id.sample_text);
+        //tv.setText(stringFromJNI());
     }
 
-    public void buttonOnClick(View v){
+    public void buttonOnClick(View v) {
         ListView lvMain = (ListView) findViewById(R.id.main_list);
 
         // создаем адаптер
@@ -89,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings_1) {
 
-            EditText editText = (EditText)findViewById(R.id.editText);
+            EditText editText = (EditText) findViewById(R.id.editText);
             editT[count] = editText.getText().toString();
             count++;
             ListView lvMain = (ListView) findViewById(R.id.main_list);
@@ -100,8 +103,6 @@ public class MainActivity extends AppCompatActivity {
 
             // присваиваем адаптер списку
             lvMain.setAdapter(adapter);
-
-
 
 
             return true;
@@ -137,5 +138,6 @@ public class MainActivity extends AppCompatActivity {
     // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
+
     }
 }
