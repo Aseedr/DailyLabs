@@ -37,16 +37,19 @@ public final class StorageFilePropertiesImpl implements StorageFileProperties {
         // make new directory
         sdPath.mkdirs();
         // make object File which contains path to file
-        File sdFile_key = new File(sdPath, FILENAME_SD);
+        File sdFile = new File(sdPath, FILENAME_SD);
         try {
             // make write thread
-            BufferedWriter bw = new BufferedWriter(new FileWriter(sdFile_key));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(sdFile));
             // write data
             bw.write(key);
+            bw.write('\n');
             bw.write(value);
+            bw.write('\n');
+            bw.flush();
             // close thread
             bw.close();
-            Log.d(LOG_TAG, "File is recorded on SD-card: " + sdFile_key.getAbsolutePath());
+            Log.d(LOG_TAG, "File is recorded on SD-card: " + sdFile.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
         }
