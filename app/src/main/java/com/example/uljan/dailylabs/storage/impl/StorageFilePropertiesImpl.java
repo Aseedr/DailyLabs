@@ -79,7 +79,9 @@ public final class StorageFilePropertiesImpl implements StorageFileProperties {
             // read key
             while ((temp = br.readLine()) != null) {
                 if (temp == key) {
-                    return_value = br.readLine();
+                    while (return_value != "" && return_value != "\n"){
+                        return_value = br.readLine();
+                    }
                 }
                 Log.d(LOG_TAG, key);
             }
