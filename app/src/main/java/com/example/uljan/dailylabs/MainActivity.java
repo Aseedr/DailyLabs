@@ -13,9 +13,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import com.example.uljan.dailylabs.storage.impl.StorageFilePropertiesImpl;
 
 public class MainActivity extends AppCompatActivity {
 
+    final String FILENAME = "daily";
     String[] editT = {"", "", "", "", "", "", "", "", "", "", "", ""};
     String[] editLabs = {"Lab1", "Lab2", "Lab3", "Lab4", "Lab5", "Lab6"};
     int count = 0;
@@ -124,6 +126,27 @@ public class MainActivity extends AppCompatActivity {
             }
 
             return true;
+        }
+
+        if (id == R.id.action_settings_3) {
+            StorageFilePropertiesImpl temp = new StorageFilePropertiesImpl();
+
+            temp.putProperty("aaaaaaaaa", "bbbbbbbbb", MainActivity.this);
+            temp.putProperty("ccccccccc", "ddddddddd",MainActivity.this);
+            temp.putProperty("eeeeeeeee", "fffffffff", MainActivity.this);
+            String temp_str = temp.getProperty(MainActivity.this);
+
+            editT[count] = temp_str;
+            count++;
+            ListView lvMain = (ListView) findViewById(R.id.main_list);
+
+            // создаем адаптер
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_list_item_1, editT);
+
+            // присваиваем адаптер списку
+            lvMain.setAdapter(adapter);
+
         }
 
         return super.onOptionsItemSelected(item);
