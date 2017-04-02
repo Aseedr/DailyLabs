@@ -128,12 +128,17 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        String[] _temp_str = {"1111111", "2222222", "33333"};
+
         if (id == R.id.action_settings_3) {
             StorageFilePropertiesImpl temp = new StorageFilePropertiesImpl();
 
-            temp.putProperty("aaaaaaaaa", "bbbbbbbbb", MainActivity.this);
-            temp.putProperty("ccccccccc", "ddddddddd",MainActivity.this);
-            temp.putProperty("eeeeeeeee", "fffffffff", MainActivity.this);
+            if (count < 3) {
+                temp.putProperty(_temp_str[count], MainActivity.this);
+            } else {
+                temp.putProperty(_temp_str[1], MainActivity.this);
+            }
+
             String temp_str = temp.getProperty(MainActivity.this);
 
             editT[count] = temp_str;

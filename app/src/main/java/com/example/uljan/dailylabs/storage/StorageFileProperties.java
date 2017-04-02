@@ -5,7 +5,7 @@ import android.content.Context;
 import java.io.IOException;
 
 public interface StorageFileProperties {
-    void putProperty(String key, String value, Context context) throws IOException;
+    void putProperty(String value, Context context) throws IOException;
 
     String getProperty(Context context) throws IOException;
 }

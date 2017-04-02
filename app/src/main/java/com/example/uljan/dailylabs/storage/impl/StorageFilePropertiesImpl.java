@@ -18,7 +18,7 @@ public final class StorageFilePropertiesImpl implements StorageFileProperties {
     final String FILENAME = "daily";
 
     @Override
-    public void putProperty(String key, String value, Context context) {
+    public void putProperty(String value, Context context) {
 
         try {
             // delete file
@@ -29,8 +29,6 @@ public final class StorageFilePropertiesImpl implements StorageFileProperties {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
                     context.openFileOutput(FILENAME, context.MODE_PRIVATE)));
             // writing data
-            bw.write(key);
-            bw.write('=');
             bw.write(value);
             bw.flush();
             // close thread
